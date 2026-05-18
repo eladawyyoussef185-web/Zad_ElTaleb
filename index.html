@@ -30,6 +30,7 @@
             text-align: center;
             padding: 40px 20px 20px;
             width: 100%;
+            position: relative;
         }
 
         header h1 {
@@ -43,6 +44,29 @@
         header p {
             font-size: 1.1rem;
             color: #ccc;
+        }
+
+        /* زر الباركود في الهيدر */
+        .qr-header-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qr-header-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
         }
 
         /* زراير الأقسام */
@@ -139,6 +163,53 @@
         }
         #toast.show { bottom: 30px; }
 
+        /* نافذة الباركود المنبثقة (Modal) */
+        #qr-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--secondary);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid var(--accent);
+            max-width: 90%;
+            width: 350px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .close-modal:hover { color: var(--accent); }
+
+        .modal-content h3 { margin-bottom: 10px; color: var(--accent); }
+        .modal-content p { font-size: 0.9rem; color: #ccc; margin-bottom: 20px; }
+        
+        #qr-image {
+            width: 200px;
+            height: 200px;
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 0 auto;
+        }
+
         footer {
             margin-top: auto;
             padding: 20px;
@@ -158,9 +229,25 @@
 <body>
 
     <header>
+        <!-- زر فتح الباركود -->
+        <button class="qr-header-btn" onclick="openQRModal()">
+            <i class="fas fa-qrcode"></i> باركود التطبيق
+        </button>
+
         <h1><i class="fas fa-book-open"></i> زاد الطالب</h1>
         <p>أدعية وأذكار تريح القلب وتيسر الصعب بإذن الله</p>
     </header>
+
+    <!-- نافذة الباركود المنبثقة -->
+    <div id="qr-modal">
+        <div class="modal-content">
+            <i class="fas fa-times close-modal" onclick="closeQRModal()"></i>
+            <h3>شارك التطبيق بسهولة 🚀</h3>
+            <p>خلي أي حد يعمل سكان للباركود ده بكاميرا الموبايل عشان يدخل هنا مباشرة.</p>
+            <!-- الصورة دي بتتولد برمجياً باللينك بتاع الموقع -->
+            <img id="qr-image" src="" alt="QR Code">
+        </div>
+    </div>
 
     <div class="tabs-container">
         <button class="tab-btn active" onclick="openTab('before-study')">قبل المذاكرة</button>
@@ -235,28 +322,42 @@
     <script>
         // دالة التبديل بين الأقسام
         function openTab(tabId) {
-            // إخفاء كل الأقسام
             document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
-            // إزالة اللون من كل الزراير
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            
-            // إظهار القسم المطلوب وتفعيل الزرار
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
 
         // دالة نسخ الدعاء
         function copyDua(button) {
-            // الحصول على النص اللي جوة الكارت
             const textToCopy = button.parentElement.querySelector('p').innerText;
-            
-            // نسخ النص
             navigator.clipboard.writeText(textToCopy).then(() => {
-                // إظهار رسالة النجاح
                 const toast = document.getElementById('toast');
                 toast.classList.add('show');
                 setTimeout(() => { toast.classList.remove('show'); }, 2500);
             });
+        }
+
+        // --- نظام الباركود الديناميكي ---
+        function openQRModal() {
+            // الحصول على الرابط الحالي للموقع
+            let currentUrl = window.location.href;
+            
+            // عشان لو فتحت الملف من الكمبيوتر مباشرة يظهر باركود وهمي لحد ما ترفعه على استضافة
+            if(currentUrl.includes("file://") || currentUrl.includes("C:")) {
+                currentUrl = "https://www.google.com"; // بديل مؤقت
+            }
+
+            // استخدام واجهة برمجية (API) مجانية لتوليد الباركود
+            let qrApiUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + encodeURIComponent(currentUrl);
+            
+            // وضع الصورة في النافذة وعرضها
+            document.getElementById('qr-image').src = qrApiUrl;
+            document.getElementById('qr-modal').style.display = 'flex';
+        }
+
+        function closeQRModal() {
+            document.getElementById('qr-modal').style.display = 'none';
         }
     </script>
 </body>
