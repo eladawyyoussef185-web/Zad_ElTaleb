@@ -229,7 +229,6 @@
 <body>
 
     <header>
-        <!-- زر فتح الباركود -->
         <button class="qr-header-btn" onclick="openQRModal()">
             <i class="fas fa-qrcode"></i> باركود التطبيق
         </button>
@@ -238,13 +237,11 @@
         <p>أدعية وأذكار تريح القلب وتيسر الصعب بإذن الله</p>
     </header>
 
-    <!-- نافذة الباركود المنبثقة -->
     <div id="qr-modal">
         <div class="modal-content">
             <i class="fas fa-times close-modal" onclick="closeQRModal()"></i>
             <h3>شارك التطبيق بسهولة 🚀</h3>
             <p>خلي أي حد يعمل سكان للباركود ده بكاميرا الموبايل عشان يدخل هنا مباشرة.</p>
-            <!-- الصورة دي بتتولد برمجياً باللينك بتاع الموقع -->
             <img id="qr-image" src="" alt="QR Code">
         </div>
     </div>
@@ -266,6 +263,14 @@
             <p>"اللهم أخرجنا من ظلمات الوهم، وأكرمنا بنور الفهم، وافتح علينا بمعرفة العلم، وسهل أخلاقنا بالحلم، واجعلنا ممن يستمعون القول فيتبعون أحسنه."</p>
             <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
         </div>
+        <div class="dua-card">
+            <p>"اللهم إني توكلت عليك، وسلمت أمري إليك، لا ملجأ ولا منجا منك إلا إليك."</p>
+            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
+        </div>
+        <div class="dua-card">
+            <p>"رب زدني علماً، وارزقني فهماً، واجعل القرآن ربيع قلبي ونور صدري وجلاء حزني وذهاب همي."</p>
+            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
+        </div>
     </div>
 
     <!-- قسم دخول الامتحان -->
@@ -280,6 +285,14 @@
         </div>
         <div class="dua-card">
             <p>"يا حي يا قيوم برحمتك أستغيث، أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين."</p>
+            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
+        </div>
+        <div class="dua-card">
+            <p>"بسم الله، توكلت على الله، ولا حول ولا قوة إلا بالله العلي العظيم."</p>
+            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
+        </div>
+        <div class="dua-card">
+            <p>"اللهم ألهمني الصواب في الجواب، وبلغني أعلى المراتب في الدين والدنيا والآخرة، واحفظني وأصلحني."</p>
             <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
         </div>
     </div>
@@ -298,6 +311,14 @@
             <p>"رب اشرح لي صدري، ويسر لي أمري، واحلل عقدة من لساني يفقهوا قولي."</p>
             <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
         </div>
+        <div class="dua-card">
+            <p>"اللهم افتح علي فتوح العارفين بحكمتك، وانشر علي رحمتك، وذكرني ما نسيت يا ذا الجلال والإكرام."</p>
+            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
+        </div>
+        <div class="dua-card">
+            <p>"يا معلم إبراهيم علمني، ويا مفهم سليمان فهمني."</p>
+            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
+        </div>
     </div>
 
     <!-- قسم بعد الامتحان -->
@@ -310,6 +331,14 @@
             <p>"اللهم إني استودعتك ما قرأت وما حفظت وما تعلمت، فرده عند حاجتي إليه، إنك على كل شيء قدير، حسبنا الله ونعم الوكيل."</p>
             <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
         </div>
+        <div class="dua-card">
+            <p>"الحمد لله الذي بنعمته تتم الصالحات."</p>
+            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
+        </div>
+        <div class="dua-card">
+            <p>"اللهم إن من الخير ما لا يعلمه إلا أنت، فاكتب لي الخير حيث كان ثم رضني به، ويسر لي كل عسير."</p>
+            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
+        </div>
     </div>
 
     <div id="toast">تم نسخ الدعاء بنجاح ✔️</div>
@@ -320,7 +349,6 @@
     </footer>
 
     <script>
-        // دالة التبديل بين الأقسام
         function openTab(tabId) {
             document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -328,7 +356,6 @@
             event.currentTarget.classList.add('active');
         }
 
-        // دالة نسخ الدعاء
         function copyDua(button) {
             const textToCopy = button.parentElement.querySelector('p').innerText;
             navigator.clipboard.writeText(textToCopy).then(() => {
@@ -338,20 +365,13 @@
             });
         }
 
-        // --- نظام الباركود الديناميكي ---
         function openQRModal() {
-            // الحصول على الرابط الحالي للموقع
             let currentUrl = window.location.href;
-            
-            // عشان لو فتحت الملف من الكمبيوتر مباشرة يظهر باركود وهمي لحد ما ترفعه على استضافة
             if(currentUrl.includes("file://") || currentUrl.includes("C:")) {
-                currentUrl = "https://www.google.com"; // بديل مؤقت
+                currentUrl = "https://www.google.com";
             }
-
-            // استخدام واجهة برمجية (API) مجانية لتوليد الباركود
             let qrApiUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + encodeURIComponent(currentUrl);
             
-            // وضع الصورة في النافذة وعرضها
             document.getElementById('qr-image').src = qrApiUrl;
             document.getElementById('qr-modal').style.display = 'flex';
         }
