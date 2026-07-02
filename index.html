@@ -47,7 +47,7 @@
             color: #b3cbb9;
         }
 
-        /* زراير الهيدر (شير وباركود) */
+        /* زراير الهيدر */
         .nav-buttons {
             position: absolute;
             top: 20px;
@@ -77,7 +77,7 @@
             transform: scale(1.05);
         }
 
-        /* إشعار ذكر الله التلقائي التوست */
+        /* إشعار ذكر الله */
         #dhikr-toast {
             position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
             background: rgba(6, 44, 30, 0.95); border: 1px solid var(--accent); border-radius: 30px;
@@ -96,7 +96,7 @@
             gap: 15px;
         }
 
-        /* كروت الأذكار الذكية */
+        /* كروت الأذكار */
         .azkar-card {
             background: var(--card-bg);
             border-right: 4px solid var(--accent);
@@ -107,7 +107,6 @@
             cursor: pointer;
             user-select: none;
             transition: transform 0.2s, background 0.3s;
-            position: relative;
         }
 
         .azkar-card:active {
@@ -128,7 +127,6 @@
             font-style: italic;
         }
 
-        /* العداد التفاعلي */
         .counter-badge {
             display: inline-flex;
             align-items: center;
@@ -140,13 +138,12 @@
             font-weight: bold;
             color: var(--accent);
             font-size: 1rem;
-            transition: 0.3s;
         }
 
         .azkar-card.done {
             border-right-color: #2ecc71;
-            background: rgba(46, 204, 113, 0.05);
-            pointer-events: none; /* يوقف الضغط بعد الانتهاء */
+            background: rgba(46, 204, 113, 0.1);
+            pointer-events: none;
         }
 
         .azkar-card.done .counter-badge {
@@ -155,7 +152,7 @@
             border-color: #2ecc71;
         }
 
-        /* شاشة الباركود المنبثقة */
+        /* شاشة الباركود */
         #qr-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85); z-index: 2000; justify-content: center; align-items: center;
@@ -187,7 +184,6 @@
 </head>
 <body>
 
-    <!-- إشعار اذكر الله التلقائي -->
     <div id="dhikr-toast">
         <i class="fas fa-beads" style="color: var(--accent);"></i> <span id="dhikr-text">سبحان الله وبحمده</span>
     </div>
@@ -198,61 +194,60 @@
             <button class="nav-btn" onclick="openQR()" title="باركود التطبيق"><i class="fas fa-qrcode"></i></button>
         </div>
         <h1><i class="fas fa-sun"></i> حصن الصباح</h1>
-        <p>اضغط على الذكر لتكراره ومتابعة العداد</p>
+        <p>اضغط على أي ذكر لتسجيل التكرار</p>
     </header>
 
     <div class="container">
         
         <!-- ذكر 1 -->
         <div class="azkar-card" onclick="countProgress(this, 1)">
-            <div class="azkar-text">"آية الكرسي: اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ..."</div>
+            <div class="azkar-text">"آية الكرسي: اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ..."</div>
             <div class="azkar-source">من قرأها حين يصبح أجير من الجن حتى يمسي.</div>
-            <div class="counter-badge">التكرار: <span class="num">1</span></div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">1</span></div>
         </div>
 
         <!-- ذكر 2 -->
         <div class="azkar-card" onclick="countProgress(this, 3)">
             <div class="azkar-text">"أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ"</div>
             <div class="azkar-source">رواه مسلم</div>
-            <div class="counter-badge">التكرار: <span class="num">3</span></div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">3</span></div>
         </div>
 
         <!-- ذكر 3 -->
         <div class="azkar-card" onclick="countProgress(this, 3)">
             <div class="azkar-text">"بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ"</div>
             <div class="azkar-source">لم يضره شيء في ذلك اليوم</div>
-            <div class="counter-badge">التكرار: <span class="num">3</span></div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">3</span></div>
         </div>
 
         <!-- ذكر 4 -->
         <div class="azkar-card" onclick="countProgress(this, 4)">
-            <div class="azkar-text">"اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَٰهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ"</div>
+            <div class="azkar-text">"اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَٰهَ إِلَّا أَنْتَ..."</div>
             <div class="azkar-source">من قالها أعتقه الله من النار</div>
-            <div class="counter-badge">التكرار: <span class="num">4</span></div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">4</span></div>
         </div>
 
         <!-- ذكر 5 -->
         <div class="azkar-card" onclick="countProgress(this, 7)">
             <div class="azkar-text">"حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ ۖ عَلَيْهِ تَوَكَّلْتُ ۖ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ"</div>
             <div class="azkar-source">من قالها 7 مرات كفاه الله ما أهمه</div>
-            <div class="counter-badge">التكرار: <span class="num">7</span></div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">7</span></div>
         </div>
 
         <!-- ذكر 6 -->
         <div class="azkar-card" onclick="countProgress(this, 10)">
             <div class="azkar-text">"اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى نَبِيِّنَا مُحَمَّدٍ"</div>
             <div class="azkar-source">من صلى عليّ حين يصبح وحين يمسي أدركته شفاعتي</div>
-            <div class="counter-badge">التكرار: <span class="num">10</span></div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">10</span></div>
         </div>
 
     </div>
 
-    <!-- مودال الباركود -->
     <div id="qr-modal">
         <div class="modal-content">
             <i class="fas fa-times close-modal" onclick="closeQR()"></i>
             <h3 style="color: var(--accent);">مشاركة الحصن 🤍</h3>
-            <p style="font-size: 0.9rem; margin-top: 5px;">امسح الكود لفتح التطبيق ومشاركته كصدقة جارية</p>
+            <p style="font-size: 0.9rem; margin-top: 5px;">امسح الكود لفتح التطبيق ومشاركته</p>
             <img id="qr-image" src="" alt="QR Code">
         </div>
     </div>
@@ -263,23 +258,24 @@
     </footer>
 
     <script>
-        // نظام العداد الذكي عند الضغط
+        // العداد الذكي المصلح بالكامل
         function countProgress(card, maxCount) {
-            let numSpan = card.querySelector('.num');
-            let currentCount = parseInt(numSpan.innerText);
+            let currentSpan = card.querySelector('.current');
+            let count = parseInt(currentSpan.innerText);
 
-            if (currentCount > 1) {
-                numSpan.innerText = currentCount - 1;
-            } else {
-                // عند اكتمال الذكر
-                numSpan.innerHTML = '<i class="fas fa-check"></i> تم';
-                card.classList.add('done');
-                // اهتزاز بسيط للموبايلات الداعمة
-                if(navigator.vibrate) navigator.vibrate(50);
+            if (count < maxCount) {
+                count++;
+                currentSpan.innerText = count;
+                
+                if (count === maxCount) {
+                    card.classList.add('done');
+                    card.querySelector('.counter-badge').innerHTML = '<i class="fas fa-check"></i> تم اكتمال الذكر';
+                    if(navigator.vibrate) navigator.vibrate(50);
+                }
             }
         }
 
-        // إشعارات اذكر الله التلقائية الذكية
+        // إشعارات التذكير بالله التلقائية
         const athkarReminders = ["سبحان الله وبحمده", "أستغفر الله وأتوب إليه", "اللهم صلِّ وسلم على نبينا محمد", "لا حول ولا قوة إلا بالله", "لا إله إلا الله وحده لا شريك له"];
         function triggerDhikr() {
             const toast = document.getElementById('dhikr-toast');
@@ -289,7 +285,6 @@
             toast.classList.add('show');
             setTimeout(() => { toast.classList.remove('show'); }, 4000);
         }
-        // يشتغل تلقائياً كل 40 ثانية لمرافقة المستخدم
         setInterval(triggerDhikr, 40000);
 
         // مشاركة اللينك
@@ -301,15 +296,15 @@
                     url: window.location.href
                 }).catch(console.error);
             } else {
-                alert("انسخ اللينك الحالي وشاركه مع أحبابك كصدقة جارية!");
+                alert("نسخ اللينك الحالي وشاركه مع أحبابك!");
             }
         }
 
-        // توليد الباركود بشكل ديناميكي
+        // الباركود الديناميكي
         function openQR() {
             let currentUrl = window.location.href;
             if(currentUrl.includes("file://") || currentUrl.includes("C:")) {
-                currentUrl = "https://www.google.com"; // بديل وهمي أثناء التجرية المحلية
+                currentUrl = "https://www.google.com";
             }
             let qrApiUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + encodeURIComponent(currentUrl);
             document.getElementById('qr-image').src = qrApiUrl;
