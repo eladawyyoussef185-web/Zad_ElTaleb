@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>زاد الطالب | أدعية الامتحانات</title>
+    <title>زاد المسلم | أذكار الصباح الاحترافية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #0f2027;
-            --secondary: #203a43;
-            --accent: #fdbb2d;
-            --text-light: #f4f4f9;
-            --card-bg: rgba(255, 255, 255, 0.05);
+            --primary: #062c1e;
+            --secondary: #0a4430;
+            --accent: #d4af37;
+            --text-light: #f4f7f5;
+            --card-bg: rgba(255, 255, 255, 0.06);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
         
         body {
-            background: linear-gradient(135deg, var(--primary), var(--secondary), #2c5364);
+            background: linear-gradient(135deg, var(--primary), var(--secondary), #11382b);
             color: var(--text-light);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-x: hidden;
         }
 
         header {
@@ -35,7 +36,7 @@
 
         header h1 {
             color: var(--accent);
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             font-weight: 900;
             margin-bottom: 10px;
             text-shadow: 0 4px 10px rgba(0,0,0,0.5);
@@ -43,340 +44,279 @@
 
         header p {
             font-size: 1.1rem;
-            color: #ccc;
+            color: #b3cbb9;
         }
 
-        /* زر الباركود في الهيدر */
-        .qr-header-btn {
+        /* زراير الهيدر (شير وباركود) */
+        .nav-buttons {
             position: absolute;
             top: 20px;
             left: 20px;
-            background: transparent;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 10px 15px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .qr-header-btn:hover {
-            background: var(--accent);
-            color: var(--primary);
-        }
-
-        /* زراير الأقسام */
-        .tabs-container {
             display: flex;
             gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 20px 0;
-            width: 90%;
-            max-width: 600px;
         }
 
-        .tab-btn {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .tab-btn.active, .tab-btn:hover {
-            background: var(--accent);
-            color: var(--primary);
-            border-color: var(--accent);
-        }
-
-        /* كروت الأدعية */
-        .content-section {
-            width: 90%;
-            max-width: 600px;
-            display: none;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .content-section.active {
-            display: flex;
-        }
-
-        .dua-card {
-            background: var(--card-bg);
-            border-left: 4px solid var(--accent);
-            padding: 20px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            position: relative;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .dua-card p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .copy-btn {
+        .nav-btn {
             background: transparent;
             border: 1px solid var(--accent);
             color: var(--accent);
-            padding: 8px 15px;
-            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             cursor: pointer;
-            transition: 0.3s;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* إشعار ذكر الله التلقائي التوست */
+        #dhikr-toast {
+            position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
+            background: rgba(6, 44, 30, 0.95); border: 1px solid var(--accent); border-radius: 30px;
+            padding: 12px 25px; color: #fff; font-weight: bold; font-size: 1.1rem;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); z-index: 9999; transition: 0.5s ease;
+            display: flex; align-items: center; gap: 10px;
+        }
+        #dhikr-toast.show { top: 20px; }
+
+        .container {
+            width: 95%;
+            max-width: 600px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* كروت الأذكار الذكية */
+        .azkar-card {
+            background: var(--card-bg);
+            border-right: 4px solid var(--accent);
+            padding: 22px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.2s, background 0.3s;
+            position: relative;
+        }
+
+        .azkar-card:active {
+            transform: scale(0.98);
+        }
+
+        .azkar-text {
+            font-size: 1.25rem;
+            line-height: 1.9;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .azkar-source {
             font-size: 0.9rem;
+            color: #9cbda4;
+            margin-bottom: 15px;
+            font-style: italic;
         }
 
-        .copy-btn:hover {
-            background: var(--accent);
-            color: var(--primary);
-        }
-
-        /* إشعار النسخ */
-        #toast {
-            position: fixed;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: var(--primary);
-            padding: 10px 20px;
+        /* العداد التفاعلي */
+        .counter-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--secondary);
+            border: 1px solid rgba(214, 175, 87, 0.4);
+            padding: 6px 15px;
             border-radius: 20px;
             font-weight: bold;
-            transition: 0.4s;
-            z-index: 1000;
+            color: var(--accent);
+            font-size: 1rem;
+            transition: 0.3s;
         }
-        #toast.show { bottom: 30px; }
 
-        /* نافذة الباركود المنبثقة (Modal) */
+        .azkar-card.done {
+            border-right-color: #2ecc71;
+            background: rgba(46, 204, 113, 0.05);
+            pointer-events: none; /* يوقف الضغط بعد الانتهاء */
+        }
+
+        .azkar-card.done .counter-badge {
+            background: #2ecc71;
+            color: #fff;
+            border-color: #2ecc71;
+        }
+
+        /* شاشة الباركود المنبثقة */
         #qr-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); z-index: 2000; justify-content: center; align-items: center;
             backdrop-filter: blur(5px);
         }
 
         .modal-content {
-            background: var(--secondary);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            border: 2px solid var(--accent);
-            max-width: 90%;
-            width: 350px;
-            position: relative;
+            background: var(--secondary); padding: 30px; border-radius: 20px; text-align: center;
+            border: 2px solid var(--accent); max-width: 90%; width: 340px; position: relative;
         }
 
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            color: #fff;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        
-        .close-modal:hover { color: var(--accent); }
-
-        .modal-content h3 { margin-bottom: 10px; color: var(--accent); }
-        .modal-content p { font-size: 0.9rem; color: #ccc; margin-bottom: 20px; }
-        
-        #qr-image {
-            width: 200px;
-            height: 200px;
-            background: #fff;
-            padding: 10px;
-            border-radius: 10px;
-            margin: 0 auto;
-        }
+        .close-modal { position: absolute; top: 15px; right: 15px; color: #fff; font-size: 1.5rem; cursor: pointer; }
+        #qr-image { width: 180px; height: 180px; background: #fff; padding: 10px; border-radius: 10px; margin: 15px auto 0; }
 
         footer {
             margin-top: auto;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
             width: 100%;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             font-size: 0.9rem;
-            color: #aaa;
+            color: #8fa395;
+            line-height: 1.6;
         }
 
-        footer span {
-            color: var(--accent);
-            font-weight: bold;
-        }
+        footer .dev-name { color: var(--accent); font-weight: bold; font-size: 1rem; }
+        footer .signature { font-family: 'Courier New', Courier, monospace; font-weight: 900; letter-spacing: 2px; color: #fff; font-size: 1.1rem; margin-top: 5px; display: block; }
     </style>
 </head>
 <body>
 
-    <header>
-        <button class="qr-header-btn" onclick="openQRModal()">
-            <i class="fas fa-qrcode"></i> باركود التطبيق
-        </button>
+    <!-- إشعار اذكر الله التلقائي -->
+    <div id="dhikr-toast">
+        <i class="fas fa-beads" style="color: var(--accent);"></i> <span id="dhikr-text">سبحان الله وبحمده</span>
+    </div>
 
-        <h1><i class="fas fa-book-open"></i> زاد الطالب</h1>
-        <p>أدعية وأذكار تريح القلب وتيسر الصعب بإذن الله</p>
+    <header>
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="shareApp()" title="مشاركة التطبيق"><i class="fas fa-share-alt"></i></button>
+            <button class="nav-btn" onclick="openQR()" title="باركود التطبيق"><i class="fas fa-qrcode"></i></button>
+        </div>
+        <h1><i class="fas fa-sun"></i> حصن الصباح</h1>
+        <p>اضغط على الذكر لتكراره ومتابعة العداد</p>
     </header>
 
+    <div class="container">
+        
+        <!-- ذكر 1 -->
+        <div class="azkar-card" onclick="countProgress(this, 1)">
+            <div class="azkar-text">"آية الكرسي: اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ..."</div>
+            <div class="azkar-source">من قرأها حين يصبح أجير من الجن حتى يمسي.</div>
+            <div class="counter-badge">التكرار: <span class="num">1</span></div>
+        </div>
+
+        <!-- ذكر 2 -->
+        <div class="azkar-card" onclick="countProgress(this, 3)">
+            <div class="azkar-text">"أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ"</div>
+            <div class="azkar-source">رواه مسلم</div>
+            <div class="counter-badge">التكرار: <span class="num">3</span></div>
+        </div>
+
+        <!-- ذكر 3 -->
+        <div class="azkar-card" onclick="countProgress(this, 3)">
+            <div class="azkar-text">"بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ"</div>
+            <div class="azkar-source">لم يضره شيء في ذلك اليوم</div>
+            <div class="counter-badge">التكرار: <span class="num">3</span></div>
+        </div>
+
+        <!-- ذكر 4 -->
+        <div class="azkar-card" onclick="countProgress(this, 4)">
+            <div class="azkar-text">"اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَٰهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ"</div>
+            <div class="azkar-source">من قالها أعتقه الله من النار</div>
+            <div class="counter-badge">التكرار: <span class="num">4</span></div>
+        </div>
+
+        <!-- ذكر 5 -->
+        <div class="azkar-card" onclick="countProgress(this, 7)">
+            <div class="azkar-text">"حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ ۖ عَلَيْهِ تَوَكَّلْتُ ۖ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ"</div>
+            <div class="azkar-source">من قالها 7 مرات كفاه الله ما أهمه</div>
+            <div class="counter-badge">التكرار: <span class="num">7</span></div>
+        </div>
+
+        <!-- ذكر 6 -->
+        <div class="azkar-card" onclick="countProgress(this, 10)">
+            <div class="azkar-text">"اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى نَبِيِّنَا مُحَمَّدٍ"</div>
+            <div class="azkar-source">من صلى عليّ حين يصبح وحين يمسي أدركته شفاعتي</div>
+            <div class="counter-badge">التكرار: <span class="num">10</span></div>
+        </div>
+
+    </div>
+
+    <!-- مودال الباركود -->
     <div id="qr-modal">
         <div class="modal-content">
-            <i class="fas fa-times close-modal" onclick="closeQRModal()"></i>
-            <h3>شارك التطبيق بسهولة 🚀</h3>
-            <p>خلي أي حد يعمل سكان للباركود ده بكاميرا الموبايل عشان يدخل هنا مباشرة.</p>
+            <i class="fas fa-times close-modal" onclick="closeQR()"></i>
+            <h3 style="color: var(--accent);">مشاركة الحصن 🤍</h3>
+            <p style="font-size: 0.9rem; margin-top: 5px;">امسح الكود لفتح التطبيق ومشاركته كصدقة جارية</p>
             <img id="qr-image" src="" alt="QR Code">
         </div>
     </div>
 
-    <div class="tabs-container">
-        <button class="tab-btn active" onclick="openTab('before-study')">قبل المذاكرة</button>
-        <button class="tab-btn" onclick="openTab('before-exam')">دخول الامتحان</button>
-        <button class="tab-btn" onclick="openTab('forgot')">عند النسيان</button>
-        <button class="tab-btn" onclick="openTab('after-exam')">بعد الامتحان</button>
-    </div>
-
-    <!-- قسم قبل المذاكرة -->
-    <div id="before-study" class="content-section active">
-        <div class="dua-card">
-            <p>"اللهم إني أسألك فهم النبيين، وحفظ المرسلين والملائكة المقربين، اللهم اجعل ألسنتنا عامرة بذكرك، وقلوبنا بخشيتك، وأسرارنا بطاعتك، إنك على كل شيء قدير."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-        <div class="dua-card">
-            <p>"اللهم أخرجنا من ظلمات الوهم، وأكرمنا بنور الفهم، وافتح علينا بمعرفة العلم، وسهل أخلاقنا بالحلم، واجعلنا ممن يستمعون القول فيتبعون أحسنه."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-        <div class="dua-card">
-            <p>"اللهم إني توكلت عليك، وسلمت أمري إليك، لا ملجأ ولا منجا منك إلا إليك."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-        <div class="dua-card">
-            <p>"رب زدني علماً، وارزقني فهماً، واجعل القرآن ربيع قلبي ونور صدري وجلاء حزني وذهاب همي."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-    </div>
-
-    <!-- قسم دخول الامتحان -->
-    <div id="before-exam" class="content-section">
-        <div class="dua-card">
-            <p>"رب أدخلني مدخل صدق وأخرجني مخرج صدق، واجعل لي من لدنك سلطاناً نصيراً."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-        <div class="dua-card">
-            <p>"اللهم لا سهل إلا ما جعلته سهلاً، وأنت تجعل الحزن إذا شئت سهلاً."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-        <div class="dua-card">
-            <p>"يا حي يا قيوم برحمتك أستغيث، أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-        <div class="dua-card">
-            <p>"بسم الله، توكلت على الله، ولا حول ولا قوة إلا بالله العلي العظيم."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-        <div class="dua-card">
-            <p>"اللهم ألهمني الصواب في الجواب، وبلغني أعلى المراتب في الدين والدنيا والآخرة، واحفظني وأصلحني."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-    </div>
-
-    <!-- قسم عند النسيان والتعسر -->
-    <div id="forgot" class="content-section">
-        <div class="dua-card">
-            <p>"اللهم يا جامع الناس ليوم لا ريب فيه، اجمع علي ضالتي."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-        <div class="dua-card">
-            <p>"لا إله إلا أنت سبحانك إني كنت من الظالمين."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-        <div class="dua-card">
-            <p>"رب اشرح لي صدري، ويسر لي أمري، واحلل عقدة من لساني يفقهوا قولي."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-        <div class="dua-card">
-            <p>"اللهم افتح علي فتوح العارفين بحكمتك، وانشر علي رحمتك، وذكرني ما نسيت يا ذا الجلال والإكرام."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-        <div class="dua-card">
-            <p>"يا معلم إبراهيم علمني، ويا مفهم سليمان فهمني."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-    </div>
-
-    <!-- قسم بعد الامتحان -->
-    <div id="after-exam" class="content-section">
-        <div class="dua-card">
-            <p>"الحمد لله الذي هدانا لهذا وما كنا لنهتدي لولا أن هدانا الله."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-        <div class="dua-card">
-            <p>"اللهم إني استودعتك ما قرأت وما حفظت وما تعلمت، فرده عند حاجتي إليه، إنك على كل شيء قدير، حسبنا الله ونعم الوكيل."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-        <div class="dua-card">
-            <p>"الحمد لله الذي بنعمته تتم الصالحات."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-        <div class="dua-card">
-            <p>"اللهم إن من الخير ما لا يعلمه إلا أنت، فاكتب لي الخير حيث كان ثم رضني به، ويسر لي كل عسير."</p>
-            <button class="copy-btn" onclick="copyDua(this)"><i class="fas fa-copy"></i> نسخ الدعاء</button>
-        </div>
-    </div>
-
-    <div id="toast">تم نسخ الدعاء بنجاح ✔️</div>
-
     <footer>
-        تم التصميم والتطوير بواسطة <span>يوسف أحمد العدوي</span> © 2026<br>
-        صدقة جارية لكل طالب علم
+        تمت البرمجة والتصميم بواسطة المطور <span class="dev-name">يوسف أحمد العدوي</span> © 2026<br>
+        <span class="signature">KARSA</span>
     </footer>
 
     <script>
-        function openTab(tabId) {
-            document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
+        // نظام العداد الذكي عند الضغط
+        function countProgress(card, maxCount) {
+            let numSpan = card.querySelector('.num');
+            let currentCount = parseInt(numSpan.innerText);
+
+            if (currentCount > 1) {
+                numSpan.innerText = currentCount - 1;
+            } else {
+                // عند اكتمال الذكر
+                numSpan.innerHTML = '<i class="fas fa-check"></i> تم';
+                card.classList.add('done');
+                // اهتزاز بسيط للموبايلات الداعمة
+                if(navigator.vibrate) navigator.vibrate(50);
+            }
         }
 
-        function copyDua(button) {
-            const textToCopy = button.parentElement.querySelector('p').innerText;
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const toast = document.getElementById('toast');
-                toast.classList.add('show');
-                setTimeout(() => { toast.classList.remove('show'); }, 2500);
-            });
+        // إشعارات اذكر الله التلقائية الذكية
+        const athkarReminders = ["سبحان الله وبحمده", "أستغفر الله وأتوب إليه", "اللهم صلِّ وسلم على نبينا محمد", "لا حول ولا قوة إلا بالله", "لا إله إلا الله وحده لا شريك له"];
+        function triggerDhikr() {
+            const toast = document.getElementById('dhikr-toast');
+            const randomText = athkarReminders[Math.floor(Math.random() * athkarReminders.length)];
+            document.getElementById('dhikr-text').innerText = randomText + " .. اذكر الله";
+            
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 4000);
+        }
+        // يشتغل تلقائياً كل 40 ثانية لمرافقة المستخدم
+        setInterval(triggerDhikr, 40000);
+
+        // مشاركة اللينك
+        function shareApp() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'حصن الصباح الاحترافي',
+                    text: 'تطبيق أذكار الصباح الذكي ببرمجة الكوتش يوسف 🤍',
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                alert("انسخ اللينك الحالي وشاركه مع أحبابك كصدقة جارية!");
+            }
         }
 
-        function openQRModal() {
+        // توليد الباركود بشكل ديناميكي
+        function openQR() {
             let currentUrl = window.location.href;
             if(currentUrl.includes("file://") || currentUrl.includes("C:")) {
-                currentUrl = "https://www.google.com";
+                currentUrl = "https://www.google.com"; // بديل وهمي أثناء التجرية المحلية
             }
             let qrApiUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + encodeURIComponent(currentUrl);
-            
             document.getElementById('qr-image').src = qrApiUrl;
             document.getElementById('qr-modal').style.display = 'flex';
         }
 
-        function closeQRModal() {
+        function closeQR() {
             document.getElementById('qr-modal').style.display = 'none';
         }
     </script>
