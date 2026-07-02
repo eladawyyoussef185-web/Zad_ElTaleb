@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>زاد المسلم | أذكار الصباح الاحترافية</title>
+    <title>زاد المسلم | الأذكار الشاملة</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -47,7 +47,6 @@
             color: #b3cbb9;
         }
 
-        /* زراير الهيدر */
         .nav-buttons {
             position: absolute;
             top: 20px;
@@ -77,7 +76,6 @@
             transform: scale(1.05);
         }
 
-        /* إشعار ذكر الله */
         #dhikr-toast {
             position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
             background: rgba(6, 44, 30, 0.95); border: 1px solid var(--accent); border-radius: 30px;
@@ -87,16 +85,26 @@
         }
         #dhikr-toast.show { top: 20px; }
 
+        .section-title {
+            width: 95%;
+            max-width: 600px;
+            margin: 20px 0 10px;
+            color: var(--accent);
+            font-size: 1.4rem;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(214, 175, 87, 0.3);
+            padding-bottom: 5px;
+        }
+
         .container {
             width: 95%;
             max-width: 600px;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
 
-        /* كروت الأذكار */
         .azkar-card {
             background: var(--card-bg);
             border-right: 4px solid var(--accent);
@@ -109,23 +117,10 @@
             transition: transform 0.2s, background 0.3s;
         }
 
-        .azkar-card:active {
-            transform: scale(0.98);
-        }
+        .azkar-card:active { transform: scale(0.98); }
 
-        .azkar-text {
-            font-size: 1.25rem;
-            line-height: 1.9;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-
-        .azkar-source {
-            font-size: 0.9rem;
-            color: #9cbda4;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
+        .azkar-text { font-size: 1.25rem; line-height: 1.9; margin-bottom: 15px; font-weight: 500; }
+        .azkar-source { font-size: 0.9rem; color: #9cbda4; margin-bottom: 15px; font-style: italic; }
 
         .counter-badge {
             display: inline-flex;
@@ -152,7 +147,6 @@
             border-color: #2ecc71;
         }
 
-        /* شاشة الباركود */
         #qr-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85); z-index: 2000; justify-content: center; align-items: center;
@@ -179,7 +173,7 @@
         }
 
         footer .dev-name { color: var(--accent); font-weight: bold; font-size: 1rem; }
-        footer .signature { font-family: 'Courier New', Courier, monospace; font-weight: 900; letter-spacing: 2px; color: #fff; font-size: 1.1rem; margin-top: 5px; display: block; }
+        footer .signature { font-family: 'Courier New', Courier, monospace; font-weight: 900; letter-spacing: 2px; color: #fff; font-size: 1.2rem; margin-top: 5px; display: block; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -193,54 +187,120 @@
             <button class="nav-btn" onclick="shareApp()" title="مشاركة التطبيق"><i class="fas fa-share-alt"></i></button>
             <button class="nav-btn" onclick="openQR()" title="باركود التطبيق"><i class="fas fa-qrcode"></i></button>
         </div>
-        <h1><i class="fas fa-sun"></i> حصن الصباح</h1>
-        <p>اضغط على أي ذكر لتسجيل التكرار</p>
+        <h1><i class="fas fa-mosque"></i> زاد المسلم الذكي</h1>
+        <p>اضغط على الذكر لتسجيل التكرار</p>
     </header>
 
+    <!-- القسم الأول: أذكار الصباح -->
+    <div class="section-title"><i class="fas fa-sun"></i> أذكار الصباح</div>
     <div class="container">
-        
-        <!-- ذكر 1 -->
         <div class="azkar-card" onclick="countProgress(this, 1)">
             <div class="azkar-text">"آية الكرسي: اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ..."</div>
             <div class="azkar-source">من قرأها حين يصبح أجير من الجن حتى يمسي.</div>
             <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">1</span></div>
         </div>
 
-        <!-- ذكر 2 -->
+        <div class="azkar-card" onclick="countProgress(this, 3)">
+            <div class="azkar-text">"قُلْ هُوَ اللَّهُ أَحَدٌ، قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ، قُل... " (قراءة السور كاملة)</div>
+            <div class="azkar-source">تكفيه من كل شيء.</div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">3</span></div>
+        </div>
+
         <div class="azkar-card" onclick="countProgress(this, 3)">
             <div class="azkar-text">"أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ"</div>
             <div class="azkar-source">رواه مسلم</div>
             <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">3</span></div>
         </div>
 
-        <!-- ذكر 3 -->
+        <div class="azkar-card" onclick="countProgress(this, 1)">
+            <div class="azkar-text">"اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَىٰ عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ..."</div>
+            <div class="azkar-source">سيد الاستغفار (من قالها موقناً بها ومات دخل الجنة)</div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">1</span></div>
+        </div>
+
         <div class="azkar-card" onclick="countProgress(this, 3)">
-            <div class="azkar-text">"بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ"</div>
+            <div class="azkar-text">"بِسْمِ اللَّهِ الَّذِي Lَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ"</div>
             <div class="azkar-source">لم يضره شيء في ذلك اليوم</div>
             <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">3</span></div>
         </div>
 
-        <!-- ذكر 4 -->
         <div class="azkar-card" onclick="countProgress(this, 4)">
-            <div class="azkar-text">"اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَٰهَ إِلَّا أَنْتَ..."</div>
-            <div class="azkar-source">من قالها أعتقه الله من النار</div>
+            <div class="azkar-text">"اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ وَجَمِيعَ خَلْقِكَ..."</div>
+            <div class="azkar-source">من قالها 4 مرات أعتقه الله من النار</div>
             <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">4</span></div>
         </div>
 
-        <!-- ذكر 5 -->
         <div class="azkar-card" onclick="countProgress(this, 7)">
             <div class="azkar-text">"حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ ۖ عَلَيْهِ تَوَكَّلْتُ ۖ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ"</div>
-            <div class="azkar-source">من قالها 7 مرات كفاه الله ما أهمه</div>
+            <div class="azkar-source">كفاه الله ما أهمه من أمر الدنيا والآخرة</div>
             <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">7</span></div>
         </div>
 
-        <!-- ذكر 6 -->
+        <div class="azkar-card" onclick="countProgress(this, 3)">
+            <div class="azkar-text">"رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا"</div>
+            <div class="azkar-source">كان حقاً على الله أن يرضيه يوم القيامة</div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">3</span></div>
+        </div>
+
+        <div class="azkar-card" onclick="countProgress(this, 100)">
+            <div class="azkar-text">"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ"</div>
+            <div class="azkar-source">حُطّت خطاياه وإن كانت مثل زبد البحر</div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">100</span></div>
+        </div>
+    </div>
+
+    <!-- القسم الثاني: أذكار بعد الصلاة -->
+    <div class="section-title"><i class="fas fa-pray"></i> أذكار بعد الصلاة المفروضة</div>
+    <div class="container">
+        <div class="azkar-card" onclick="countProgress(this, 3)">
+            <div class="azkar-text">"أستغفر الله، أستغفر الله، أستغفر الله"</div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">3</span></div>
+        </div>
+
+        <div class="azkar-card" onclick="countProgress(this, 1)">
+            <div class="azkar-text">"اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ، تَبَارَكْتَ ذَا الْجَلَالِ وَالْإِكْرَامِ"</div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">1</span></div>
+        </div>
+
+        <div class="azkar-card" onclick="countProgress(this, 33)">
+            <div class="azkar-text">"سُبْحَانَ اللَّهِ"</div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">33</span></div>
+        </div>
+
+        <div class="azkar-card" onclick="countProgress(this, 33)">
+            <div class="azkar-text">"الْحَمْدُ لِلَّهِ"</div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">33</span></div>
+        </div>
+
+        <div class="azkar-card" onclick="countProgress(this, 33)">
+            <div class="azkar-text">"اللَّهُ أَكْبَرُ"</div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">33</span></div>
+        </div>
+
+        <div class="azkar-card" onclick="countProgress(this, 1)">
+            <div class="azkar-text">"لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ"</div>
+            <div class="azkar-source">تمام المائة بعد التسبيح والتحميد والتكبير</div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">1</span></div>
+        </div>
+    </div>
+
+    <!-- القسم الثالث: أدعية واستغفار -->
+    <div class="section-title"><i class="fas fa-heart"></i> أدعية يومية مأثورة</div>
+    <div class="container">
+        <div class="azkar-card" onclick="countProgress(this, 100)">
+            <div class="azkar-text">"أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ"</div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">100</span></div>
+        </div>
+
         <div class="azkar-card" onclick="countProgress(this, 10)">
             <div class="azkar-text">"اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى نَبِيِّنَا مُحَمَّدٍ"</div>
-            <div class="azkar-source">من صلى عليّ حين يصبح وحين يمسي أدركته شفاعتي</div>
             <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">10</span></div>
         </div>
 
+        <div class="azkar-card" onclick="countProgress(this, 7)">
+            <div class="azkar-text">"اللَّهُمَّ أَجِرْنِي مِنَ النَّارِ"</div>
+            <div class="counter-badge">التكرار: <span class="current">0</span> / <span class="target">7</span></div>
+        </div>
     </div>
 
     <div id="qr-modal">
@@ -254,11 +314,10 @@
 
     <footer>
         تمت البرمجة والتصميم بواسطة المطور <span class="dev-name">يوسف أحمد العدوي</span> © 2026<br>
-        <span class="signature">KARSA</span>
+        <span class="signature">jou</span>
     </footer>
 
     <script>
-        // العداد الذكي المصلح بالكامل
         function countProgress(card, maxCount) {
             let currentSpan = card.querySelector('.current');
             let count = parseInt(currentSpan.innerText);
@@ -269,14 +328,13 @@
                 
                 if (count === maxCount) {
                     card.classList.add('done');
-                    card.querySelector('.counter-badge').innerHTML = '<i class="fas fa-check"></i> تم اكتمال الذكر';
+                    card.querySelector('.counter-badge').innerHTML = '<i class="fas fa-check"></i> تم الاكتمال';
                     if(navigator.vibrate) navigator.vibrate(50);
                 }
             }
         }
 
-        // إشعارات التذكير بالله التلقائية
-        const athkarReminders = ["سبحان الله وبحمده", "أستغفر الله وأتوب إليه", "اللهم صلِّ وسلم على نبينا محمد", "لا حول ولا قوة إلا بالله", "لا إله إلا الله وحده لا شريك له"];
+        const athkarReminders = ["سبحان الله وبحمده", "أستغفر الله وأتوب إليه", "اللهم صلِّ وسلم على نبينا محمد", "لا حول ولا قوة إلا بالله", "لا إله إلا الله وحده لا شريك له", "سبحان الله العظيم"];
         function triggerDhikr() {
             const toast = document.getElementById('dhikr-toast');
             const randomText = athkarReminders[Math.floor(Math.random() * athkarReminders.length)];
@@ -287,20 +345,18 @@
         }
         setInterval(triggerDhikr, 40000);
 
-        // مشاركة اللينك
         function shareApp() {
             if (navigator.share) {
                 navigator.share({
-                    title: 'حصن الصباح الاحترافي',
-                    text: 'تطبيق أذكار الصباح الذكي ببرمجة الكوتش يوسف 🤍',
+                    title: 'زاد المسلم الاحترافي',
+                    text: 'تطبيق الأذكار الذكي الشامل ببرمجة المطور يوسف 🤍',
                     url: window.location.href
                 }).catch(console.error);
             } else {
-                alert("نسخ اللينك الحالي وشاركه مع أحبابك!");
+                alert("انسخ اللينك الحالي وشاركه مع أحبابك!");
             }
         }
 
-        // الباركود الديناميكي
         function openQR() {
             let currentUrl = window.location.href;
             if(currentUrl.includes("file://") || currentUrl.includes("C:")) {
@@ -317,4 +373,3 @@
     </script>
 </body>
 </html>
-
